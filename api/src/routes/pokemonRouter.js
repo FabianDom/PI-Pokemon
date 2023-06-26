@@ -16,15 +16,27 @@ router.get("/", async (req, res) => {
     // hacemos nuestra ruta get para buscar por nombre.
     const { name } = req.query;
     if (name) {
+      let pokemons = [];
       // buscamos en la Api externa.
-      let pokemons = await getPokemonsName(name);
-      if (!pokemons) {
-        // si no estan en la Api lo buscamos en DB.
-        pokemons = await getPokemonsNameDb(name);
-        if (!pokemons) {
-          return res.status(404).send("Pokemon not found");
-        }
+      const pokemonsapi = await getPokemonsName(name);
+      if (pokemonsapi) {
+        // si lo encuentra que lo mande en el array que creamos
+        pokemons.push(pokemonsapi);
       }
+      // si no estan en la Api lo buscamos en DB.
+      const pokemonsDb = await getPokemonsNameDb(name);
+      if (pokemonsDb) {
+        // si lo encuentra que lo mande en el array que creamos
+        pokemons.push(pokemonsDb);
+      }
+      if (pokemons.length === 0) {
+        return res.status(404).send("Pokemon not found");
+      }
+      const foundPokemon = pokemons.find((pokemon) => pokemon.name === name);
+      if (!foundPokemon) {
+        return res.status(404).send("Pokemon not found");
+      }
+
       // si encontramos el pokemon enviamos la respuesta.
       return res.status(200).json(pokemons);
     }
@@ -84,7 +96,7 @@ router.post("/", async (req, res) => {
       searchName = await getPokemonsNameDb(name);
       if (searchName) {
         // si existe devolvemos una respuesta que existe y no se puede crear con ese nombre.
-        return res.status(404).send("the Pokemon already exists");
+        return res.status(404).send("The Pokemon already exists");
       }
     }
     // si no existe lo creamos en nuestra DB

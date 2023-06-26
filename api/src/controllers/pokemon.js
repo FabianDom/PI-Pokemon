@@ -4,41 +4,33 @@ const URL = "https://pokeapi.co/api/v2/pokemon";
 const limit = 120;
 async function getPokemons() {
   let pokemonsArr = [];
+
   try {
     // Solicitud a la Api
     const response = await axios.get(`${URL}?limit=${limit}`);
-    const resulstApi = response.data.results;
-    // se crea un array que guardara las promesas de las llamadas a la Api.
-    const resultsPromises = [];
-    // se mapea el resultado de nuestra solicitud, y ademas le agregamos al array que creamos la promesa que nos devuelve la nueva solicitud.
-    resulstApi.map((inf) => resultsPromises.push(axios.get(inf.url)));
+    const resultsPromises = response.data.results.map((inf) =>
+      axios.get(inf.url)
+    );
     // aca esperamos que todas las promesas se resuelvan y nos devuelve el array con la informacion de los pokemon
-    await Promise.all(resultsPromises).then((pokemons) => {
-      // a nuestro array de pokemons lo mapeamos y solo le vamos a solicitar datos especificos.
-      pokemonsArr = pokemons.map((pok) => {
-        return {
-          id: pok.data.id,
-          name: pok.data.name,
-          image: pok.data.sprites.other.dream_world.front_default,
-          hp: pok.data.stats[0].base_stat,
-          attack: pok.data.stats[1].base_stat,
-          defense: pok.data.stats[2].base_stat,
-          speed: pok.data.stats[3].base_stat,
-          height: pok.data.height,
-          weight: pok.data.weight,
-          types: pok.data.types.map((ty) => {
-            return {
-              name: ty.type.name, // solo vamos a solicitar el nombre del tipo del pokemon.
-            };
-          }),
-        };
-      });
-    });
+    const pokemons = await Promise.all(resultsPromises);
+    // a nuestro array de pokemons lo mapeamos y solo le vamos a solicitar datos especificos.
+    pokemonsArr = pokemons.map((pok) => ({
+      id: pok.data.id,
+      name: pok.data.name,
+      image: pok.data.sprites.other.dream_world.front_default,
+      hp: pok.data.stats[0].base_stat,
+      attack: pok.data.stats[1].base_stat,
+      defense: pok.data.stats[2].base_stat,
+      speed: pok.data.stats[3].base_stat,
+      height: pok.data.height,
+      weight: pok.data.weight,
+      types: pok.data.types.map((ty) => ({ name: ty.type.name })),
+    }));
+
+    return pokemonsArr;
   } catch (error) {
-    return error;
+    throw error;
   }
-  // se devuelve el array con los pokemons con los datos solicitados.
-  return pokemonsArr;
 }
 
 // Funcion para traer  la informacion de la base de datos
