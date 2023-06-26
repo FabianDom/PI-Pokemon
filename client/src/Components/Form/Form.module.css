@@ -1,0 +1,110 @@
+.h1 {
+  font-family: "myfont";
+  background: #3462ad;
+  color: #ffcb05;
+  padding: 5px;
+  text-align: center;
+  margin-bottom: 5px;
+}
+.form {
+  background-color: white;
+  margin: 0 auto;
+  width: 30%;
+}
+
+.label {
+  margin-left: 8px;
+  font-size: 14px;
+  color: #3462ad;
+  display: block;
+  width: 100%;
+  font-family: "myfont";
+}
+
+.input {
+  margin-bottom: 5px;
+  width: 75%;
+  padding: 2px;
+  border-radius: 3px;
+  border: 2px solid #3462ad;
+  cursor: pointer;
+}
+.button {
+  width: 150px;
+  height: 35px;
+  margin-top: 20px;
+  font-family: "myfont";
+  color: white;
+  padding-right: 10px;
+  border-radius: 4px;
+  background: linear-gradient(to left, #3462ad, #fea500);
+  justify-self: center;
+  cursor: pointer;
+}
+
+.button:hover {
+  transform: scale(1.04);
+  background: linear-gradient(to right, #3462ad, #fea500);
+}
+.select {
+  background-color: #3462ad;
+  color: white;
+  padding: 4px;
+  width: 180px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-family: "myfont";
+  cursor: pointer;
+}
+
+.error {
+  font-family: "myfont";
+  font-size: 11px;
+  color: red;
+}
+.div {
+  margin-top: 10px;
+}
+.spanType {
+  font-size: 14px;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+.buttonType {
+  background-color: transparent;
+  color: red;
+  border: none;
+  cursor: pointer;
+}
+/* AlertStyles */
+
+.swal {
+  background-color: #f5f5f5;
+  width: 40%;
+  color: #333333;
+  border: 2px solid #cccccc;
+}
+
+.swal title {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.swal text {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.swal img {
+  width: 200px;
+  height: 150px;
+}
+
+.swal button {
+  background-color: #3462ad;
+  color: #ffffff;
+  border: none;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}

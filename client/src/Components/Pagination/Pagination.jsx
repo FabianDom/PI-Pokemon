@@ -1,4 +1,5 @@
 import React from "react";
+import Styles from "./Pagination.module.css";
 
 export default function Pagination({
   allPokemons,
@@ -14,23 +15,29 @@ export default function Pagination({
     numberPage.push(i);
   }
   return (
-    <div>
-      <ul>
-        {numberPage &&
-          numberPage.map((num) => {
-            return (
-              <li key={num}>
-                <button onClick={() => pagination(num)}>{num}</button>
-              </li>
-            );
-          })}
-      </ul>
+    <div className={Styles.container}>
       <button
         onClick={() => pagination(currentPage > 1 ? currentPage - 1 : 1)}
         disabled={currentPage === 1}
       >
         Previous
       </button>
+      <ul>
+        {numberPage &&
+          numberPage.map((num) => {
+            return (
+              <li key={num}>
+                <a
+                  className={num === currentPage ? Styles.active : ""}
+                  onClick={() => pagination(num)}
+                >
+                  {num}
+                </a>
+              </li>
+            );
+          })}
+      </ul>
+
       <button
         onClick={() =>
           pagination(currentPage < totalPages ? currentPage + 1 : totalPages)

@@ -1,0 +1,54 @@
+.div {
+  position: relative;
+  margin-top: 40px;
+  margin-left: 25px;
+  height: 280px;
+  width: 200px;
+  background-color: #3462ad;
+  animation: card 2s infinite ease;
+  border-radius: 20px;
+  box-shadow: inset 0 0 20px #ffc700;
+  transition: 1s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.div:hover {
+  background-color: #ffc700; /* Cambio del color de fondo a amarillo */
+  box-shadow: inset 0 0 20px #4b6e98;
+}
+
+@keyframes card {
+  0% {
+    transform: rotateX(-15deg) translateY(0px);
+  }
+
+  50% {
+    transform: rotateX(-15deg) translateY(-3px);
+  }
+
+  100% {
+    transform: rotateX(-15deg) translateY(0px);
+  }
+}
+
+.h2 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: white;
+  text-decoration: none;
+}
+
+.h4 {
+  display: flex;
+  flex-direction: column;
+  font-size: 18;
+  color: white;
+}
+
+.span {
+  font-size: 18;
+  color: white;
+}

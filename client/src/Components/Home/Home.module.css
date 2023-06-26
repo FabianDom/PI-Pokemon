@@ -1,0 +1,115 @@
+.div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.divLoad {
+  background-image: url("../Images/PokemonLoad.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.h1 {
+  font-family: "myfont";
+  color: white;
+  margin-top: 90px;
+  font-size: 45px;
+  animation: h1 2s infinite;
+}
+@keyframes h1 {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.buttonAll {
+  width: 150px;
+  height: 35px;
+  margin-left: 100px;
+  font-family: "myfont";
+  color: white;
+  padding-right: 10px;
+  border-radius: 4px;
+  border: 1px solid #a5a8ac;
+  background: linear-gradient(to left, #ffcb05, #2a6eb4);
+  justify-self: center;
+  cursor: pointer;
+}
+
+.buttonAll:hover {
+  transform: scale(1.04);
+}
+.buttonCreate {
+  width: 150px;
+  height: 35px;
+  margin-right: 100px;
+  font-family: "myfont";
+  color: white;
+  border: 1px solid #566c81;
+  padding-right: 10px;
+  border-radius: 4px;
+  background: linear-gradient(to left, #2a6eb4, #ffcb05);
+  justify-self: center;
+  cursor: pointer;
+}
+
+.buttonCreate:hover {
+  transform: scale(1.04);
+}
+.image {
+  animation: moveImage 3s infinite;
+}
+@keyframes moveImage {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.divSelect {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.select {
+  margin-top: 20px;
+  margin-right: 40px;
+  background-color: #3462ad;
+  color: white;
+  padding: 4px;
+  width: 180px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-family: "myfont";
+}
+
+.divPokemon {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  text-decoration: none;
+  font-family: "myfont";
+}
+
+.divPokemon img {
+  width: 50%;
+  height: 26%;
+}

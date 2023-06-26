@@ -23,7 +23,46 @@ export function getTypes() {
   };
 }
 
+export function getPokemonsName(name) {
+  const endpoint = "http://localhost:3001/pokemons?name=";
+
+  return async function (dispatch) {
+    try {
+      const namePokemon = await axios.get(endpoint + name);
+      return dispatch({
+        type: "GET_NAME_POKEMONS",
+        payload: namePokemon.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function postPokemon(payload) {
+  const endpoint = "http://localhost:3001/pokemons";
+  return async function dispatch() {
+    const response = await axios.post(endpoint, payload);
+    return {
+      type: "POST_POKEMONS",
+      payload: response,
+    };
+  };
+}
+export function getDetail(id) {
+  const endpoint = "http://localhost:3001/pokemons/";
+  return async function (dispatch) {
+    const detail = await axios.get(endpoint + id);
+    //console.log(detail.data);
+    return dispatch({
+      type: "GET_DETAIL",
+      payload: detail.data,
+    });
+  };
+}
+
 export function filterTypes(payload) {
+  console.log(payload);
   return {
     type: "FILTER_TYPES",
     payload,

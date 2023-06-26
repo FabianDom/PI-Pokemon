@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.container button {
+  font-family: "Myfont";
+  font-weight: bold;
+  background-color: #3462ad;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0 5px;
+  padding: 3px 8px;
+  transition: background-color 0.3s ease;
+}
+
+.container button:hover {
+  background-color: #fea200;
+  transform: scale(1.04);
+}
+
+.container a.active {
+  background-color: #fea200;
+  color: white;
+}
+
+.container ul {
+  margin-top: 20px;
+  display: flex;
+  font-family: "myfont";
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.container ul li a {
+  text-decoration: none;
+  color: #3462ad;
+  padding: 1px 8px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.container ul li a:hover {
+  background-color: #fea200;
+}
