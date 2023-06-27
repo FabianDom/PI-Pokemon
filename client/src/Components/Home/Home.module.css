@@ -41,7 +41,7 @@
   color: white;
   padding-right: 10px;
   border-radius: 4px;
-  border: 1px solid #a5a8ac;
+  border: 1px solid #566c81;
   background: linear-gradient(to left, #ffcb05, #2a6eb4);
   justify-self: center;
   cursor: pointer;
@@ -53,7 +53,6 @@
 .buttonCreate {
   width: 150px;
   height: 35px;
-  margin-right: 100px;
   font-family: "myfont";
   color: white;
   border: 1px solid #566c81;
@@ -67,7 +66,25 @@
 .buttonCreate:hover {
   transform: scale(1.04);
 }
+.buttonLogout {
+  width: 50px;
+  height: 30px;
+  margin-right: 10px;
+  font-family: "myfont";
+  color: white;
+  border: 1px solid #566c81;
+  padding-right: 10px;
+  border-radius: 4px;
+  background: linear-gradient(to left, #2a6eb4, #ffcb05);
+  justify-self: center;
+  cursor: pointer;
+}
+
+.buttonLogout:hover {
+  transform: scale(1.04);
+}
 .image {
+  margin-left: 70px;
   animation: moveImage 3s infinite;
 }
 @keyframes moveImage {
@@ -99,6 +116,7 @@
   border-radius: 4px;
   font-size: 12px;
   font-family: "myfont";
+  cursor: pointer;
 }
 
 .divPokemon {

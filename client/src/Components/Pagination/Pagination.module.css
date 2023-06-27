@@ -22,6 +22,9 @@
   background-color: #fea200;
   transform: scale(1.04);
 }
+.container button:disabled {
+  background-color: #4b4842;
+}
 
 .container a.active {
   background-color: #fea200;

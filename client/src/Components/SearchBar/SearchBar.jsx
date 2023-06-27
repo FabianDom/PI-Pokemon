@@ -15,8 +15,8 @@ export default function SearchBar() {
     setNames(e.target.value);
   }
   function handleSubmit(e) {
+    e.preventDefault();
     if (names === "") {
-      e.preventDefault();
       Swal({
         title: "Enter a Pokemon name",
         icon: imgError,
@@ -25,7 +25,7 @@ export default function SearchBar() {
       });
     } else {
       e.preventDefault();
-      dispatch(getPokemonsName(names)).then((name) => {
+      dispatch(getPokemonsName(names.toLowerCase())).then((name) => {
         if (!name) {
           Swal({
             title: "Pokemon does not exist",

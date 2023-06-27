@@ -15,17 +15,17 @@ import SearchBar from "../SearchBar/SearchBar";
 import Logo from "../Images/Pokemon-Logo.png";
 import Styles from "./Home.module.css";
 
-
 export default function Home() {
   const dispatch = useDispatch();
   const allPokemons = useSelector((state) => state.pokemons);
+
   const allTypes = useSelector((state) => state.types);
 
   useEffect(() => {
     // despachamos la accion cada vez que se monta la app.
     dispatch(getPokemons());
     dispatch(getTypes());
-  }, [dispatch]);
+  }, []);
 
   // -----------------------Paginado-----------------------------------//
   const [currentPage, setCurrentPage] = useState(1); // Pagina actual
@@ -86,7 +86,7 @@ export default function Home() {
 
   return (
     <div>
-      {Object.keys(allPokemons).length === 0 ? (
+      {!allPokemons || allPokemons.length === 0 ? (
         <div className={Styles.divLoad}>
           <div>
             <h1 className={Styles.h1}>Loading...</h1>
@@ -112,6 +112,9 @@ export default function Home() {
             />
             <Link to="/pokemon">
               <button className={Styles.buttonCreate}> Create Pokemon</button>
+            </Link>
+            <Link to="/">
+              <button className={Styles.buttonLogout}>Exit</button>
             </Link>
           </div>
           <div>

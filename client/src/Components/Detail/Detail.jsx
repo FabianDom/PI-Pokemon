@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getDetail } from "../../Redux/actions";
 import Styles from "./Detail.module.css";
 
@@ -9,14 +9,32 @@ export default function Detail() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const pokemonDetail = useSelector((state) => state.detail);
-  console.log(pokemonDetail);
+  const [loadPokemon, setLoadPokemon] = useState(null);
 
   useEffect(() => {
-    dispatch(getDetail(id));
-  }, [dispatch, id]);
+    dispatch(getDetail(id)).then((pokemon) => {
+      setLoadPokemon(pokemon);
+    });
+  }, [dispatch]);
 
   const PowerBar = (property, value) => {
-    const barPower = `${value}%`;
+    let barPower = "";
+
+    if (property === "HP") {
+      barPower = `${(value / 150) * 100}%`;
+    } else if (property === "Attack") {
+      barPower = `${(value / 200) * 100}%`;
+    } else if (property === "Defense") {
+      barPower = `${(value / 200) * 100}%`;
+    } else if (property === "Speed") {
+      barPower = `${(value / 150) * 100}%`;
+    } else if (property === "Height") {
+      barPower = `${(value / 50) * 100}%`;
+    } else if (property === "Weight") {
+      barPower = `${(value / 2000) * 100}%`;
+    } else {
+      barPower = `${value}%`;
+    }
 
     return (
       <div>
@@ -32,7 +50,7 @@ export default function Detail() {
 
   return (
     <div>
-      {Object.keys(pokemonDetail).length === 0 ? (
+      {loadPokemon === null ? (
         <div className={Styles.divLoad}>
           <div>
             <h1 className={Styles.h1}>Loading Information..</h1>

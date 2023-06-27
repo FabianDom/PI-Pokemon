@@ -110,7 +110,7 @@ export default function Form() {
   return (
     <div>
       <Link to="/home">
-        <button>Back</button>
+        <button className={Styles.buttonBack}>Return to battle</button>
       </Link>
 
       <form className={Styles.form} onSubmit={(e) => handleSubmit(e)}>
@@ -151,7 +151,9 @@ export default function Form() {
             name="hp"
             onChange={(e) => handleChange(e)}
           />
-          {errorInput.hp && form.hp && <p className="error">{errors.hp}</p>}
+          {errorInput.hp && form.hp && (
+            <p className={Styles.error}>{errors.hp}</p>
+          )}
         </div>
         <div>
           <label className={Styles.label}>Attack:</label>

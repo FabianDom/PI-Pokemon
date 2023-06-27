@@ -1,15 +1,29 @@
 .h1 {
   font-family: "myfont";
   background: #3462ad;
-  color: #ffcb05;
+  color: #fbd500;
   padding: 5px;
   text-align: center;
   margin-bottom: 5px;
 }
 .form {
-  background-color: white;
+  background-image: url(../Images/form.JPG);
+  background-size: cover;
   margin: 0 auto;
-  width: 30%;
+  margin-bottom: 10px;
+  width: 35%;
+}
+.buttonBack {
+  width: 150px;
+  height: 35px;
+  margin-top: 20px;
+  font-family: "myfont";
+  color: white;
+  padding-right: 10px;
+  border-radius: 4px;
+  background: #3462ad;
+  justify-self: center;
+  cursor: pointer;
 }
 
 .label {
@@ -32,7 +46,8 @@
 .button {
   width: 150px;
   height: 35px;
-  margin-top: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   font-family: "myfont";
   color: white;
   padding-right: 10px;
@@ -61,11 +76,13 @@
   font-family: "myfont";
   font-size: 11px;
   color: red;
+  font-weight: bold;
 }
 .div {
   margin-top: 10px;
 }
 .spanType {
+  font-family: "myfont";
   font-size: 14px;
   margin-top: 10px;
   margin-right: 10px;
@@ -73,6 +90,7 @@
 .buttonType {
   background-color: transparent;
   color: red;
+  font-weight: bold;
   border: none;
   cursor: pointer;
 }

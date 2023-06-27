@@ -45,19 +45,19 @@ export default function Validate(form, pokemons) {
     }
   }
 
-  if (form.speed < 1 || form.speed > 100) {
+  if (form.speed < 1 || form.speed > 150) {
     if (form.speed < 1) {
       errors.speed = "The speed of the Pokemon must be higher than 1";
-    } else if (form.speed > 100) {
-      errors.speed = "The speed of the Pokemon must be less than 100";
+    } else if (form.speed > 150) {
+      errors.speed = "The speed of the Pokemon must be less than 150";
     }
   }
 
-  if (form.height < 1 || form.height > 100) {
+  if (form.height < 1 || form.height > 50) {
     if (form.height < 1) {
       errors.height = "The height of the Pokemon must be higher than 1";
-    } else if (form.height > 100) {
-      errors.height = "The height of the Pokemon must be less than 100";
+    } else if (form.height > 50) {
+      errors.height = "The height of the Pokemon must be less than 50";
     }
   }
   if (form.weight < 1 || form.weight > 1000) {
