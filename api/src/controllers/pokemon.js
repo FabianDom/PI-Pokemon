@@ -1,7 +1,7 @@
 const axios = require("axios");
 const { Pokemon, Type } = require("../db");
 const URL = "https://pokeapi.co/api/v2/pokemon";
-const limit = 120;
+const limit = 149;
 async function getPokemons() {
   let pokemonsArr = [];
 
@@ -29,7 +29,7 @@ async function getPokemons() {
 
     return pokemonsArr;
   } catch (error) {
-    throw error;
+    return error;
   }
 }
 
