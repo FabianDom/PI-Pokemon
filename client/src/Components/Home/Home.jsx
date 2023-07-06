@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPokemons, getTypes } from "../../Redux/actions";
 import { Link } from "react-router-dom";
+
 import Pokemon from "../Pokemon/Pokemon";
 import {
   filterTypes,
@@ -18,24 +19,37 @@ import Styles from "./Home.module.css";
 export default function Home() {
   const dispatch = useDispatch();
   const allPokemons = useSelector((state) => state.pokemons);
-
   const allTypes = useSelector((state) => state.types);
 
   useEffect(() => {
-    // despachamos la accion cada vez que se monta la app.
-    dispatch(getPokemons());
-    dispatch(getTypes());
-  }, []);
+    if (!allPokemons || allPokemons.length === 0) {
+      dispatch(getPokemons());
+      dispatch(getTypes());
+      setCurrentPage(1);
+    }
+  }, [dispatch, allPokemons]);
 
   // -----------------------Paginado-----------------------------------//
-  const [currentPage, setCurrentPage] = useState(1); // Pagina actual
+  const [currentPage, setCurrentPage] = useState(() => {
+    // Leer el estado de la página actual del almacenamiento del navegador
+    const savedPage = parseInt(localStorage.getItem("currentPage")) || 1;
+    return savedPage;
+  });
   const [pokemonPage, setpokemonPage] = useState(12); // Pokemons por Pagina
   const lastPokemon = currentPage * pokemonPage;
   const firstPokemon = lastPokemon - pokemonPage;
   const pagePokemon = allPokemons.slice(firstPokemon, lastPokemon);
+
   function pagination(numberPage) {
     setCurrentPage(numberPage);
+    // Desplazar hacia arriba y visualizar la parte superior
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
+  useEffect(() => {
+    // Guardar el estado de la página actual en el almacenamiento del navegador
+    localStorage.setItem("currentPage", currentPage);
+  }, [currentPage]);
+
   // ------------------------------------------------------------------//
 
   //---------------------------FiltersAndOrder------------------------ //
@@ -48,15 +62,20 @@ export default function Home() {
   });
 
   function handleFilterType(e) {
+    e.preventDefault();
     dispatch(filterTypes(e.target.value));
+    setCurrentPage(1);
     setOrderFilters({ filterType: e.target.value });
   }
   function handleFilterCreated(e) {
+    e.preventDefault();
     dispatch(filterCreated(e.target.value));
+    setCurrentPage(1);
     setOrderFilters({ filterCreated: e.target.value });
   }
 
   function handleOrderName(e) {
+    e.preventDefault();
     dispatch(orderName(e.target.value));
     setCurrentPage(1);
     setOrderFilters({
@@ -64,6 +83,7 @@ export default function Home() {
     });
   }
   function handleOrderAttack(e) {
+    e.preventDefault();
     dispatch(orderAttack(e.target.value));
     setCurrentPage(1);
     setOrderFilters({
@@ -82,6 +102,9 @@ export default function Home() {
       orderName: "All",
       orderAttack: "All",
     }));
+
+    // Restablecer la página actual a la primera página
+    setCurrentPage(1);
   }
 
   return (
@@ -101,7 +124,7 @@ export default function Home() {
                 handleOnClick(e);
               }}
             >
-              All Pokemons
+              Pokemons
             </button>
             <img
               className={Styles.image}
@@ -118,7 +141,7 @@ export default function Home() {
             </Link>
           </div>
           <div>
-            <SearchBar />
+            <SearchBar currentPage={setCurrentPage} />
           </div>
           <div className={Styles.divSelect}>
             <select
@@ -175,6 +198,7 @@ export default function Home() {
               </div>
             ))}
           </div>
+
           <div>
             <Pagination
               pokemonPage={pokemonPage}

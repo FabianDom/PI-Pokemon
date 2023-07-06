@@ -94,26 +94,35 @@
   border: none;
   cursor: pointer;
 }
+.message {
+  font-family: "myfont";
+  font-size: 11px;
+  color: #3462ad;
+  font-weight: bold;
+  bottom: 10px;
+}
 /* AlertStyles */
 
 .swal {
   background-color: #f5f5f5;
-  width: 40%;
+  width: 30%;
   color: #333333;
   border: 2px solid #cccccc;
 }
 
 .swal title {
-  font-size: 16px;
+  font-family: "myfont";
+  font-size: 9px;
   margin-bottom: 10px;
 }
 .swal text {
-  font-size: 16px;
+  font-family: "myfont";
+  font-size: 9px;
   margin-bottom: 10px;
 }
 
 .swal img {
-  width: 200px;
+  width: 180px;
   height: 150px;
 }
 
@@ -121,8 +130,37 @@
   background-color: #3462ad;
   color: #ffffff;
   border: none;
-  font-size: 16px;
-  padding: 10px 20px;
+  font-family: "myfont";
+  font-size: 13px;
+  padding: 6px 12px;
   border-radius: 5px;
   cursor: pointer;
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 767px) {
+  .form {
+    width: 90%;
+  }
+
+  .buttonBack {
+    width: 130px;
+  }
+
+  .input {
+    width: 80%;
+  }
+
+  .button {
+    width: 120px;
+  }
+
+  .select {
+    width: 50%;
+  }
+
+  .swal {
+    width: 78%;
+    margin-left: 3px;
+  }
 }

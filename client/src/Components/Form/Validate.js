@@ -7,6 +7,7 @@ export default function Validate(form, pokemons) {
   if (!form.name) {
     errors.name = "Enter a name";
   }
+
   // Validar que solo se le pasen al input caracteres especificos
   if (!regex.test(form.name)) {
     errors.name = "Invalid characters";

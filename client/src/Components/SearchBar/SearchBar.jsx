@@ -1,12 +1,12 @@
 import React from "react";
-import Swal from "sweetalert";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getPokemonsName } from "../../Redux/actions";
 import Styles from "./SearchBar.module.css";
 import imgError from "../Images/error.png";
+import swal from "sweetalert";
 
-export default function SearchBar() {
+export default function SearchBar({ currentPage }) {
   const dispatch = useDispatch();
   const [names, setNames] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -17,7 +17,7 @@ export default function SearchBar() {
   function handleSubmit(e) {
     e.preventDefault();
     if (names === "") {
-      Swal({
+      swal({
         title: "Enter a Pokemon name",
         icon: imgError,
         button: "OK",
@@ -27,12 +27,14 @@ export default function SearchBar() {
       e.preventDefault();
       dispatch(getPokemonsName(names.toLowerCase())).then((name) => {
         if (!name) {
-          Swal({
+          swal({
             title: "Pokemon does not exist",
             icon: imgError,
             button: "OK",
             className: Styles["swal"],
           });
+        } else {
+          currentPage(1);
         }
       });
 

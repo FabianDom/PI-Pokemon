@@ -60,12 +60,35 @@
 }
 .img {
   margin-top: 30px;
+  animation: moveimage 3s infinite;
 }
-.load {
-  margin: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  height: 100vh;
+@keyframes moveimage {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+/* Estilos para dispositivos móviles */
+@media (max-width: 767px) {
+  .div {
+    background-position: 82% center;
+  }
+  .h1 {
+    font-size: 28px;
+  }
+
+  .button {
+    font-size: 15px;
+    padding: 15px;
+    margin-top: 150px;
+  }
+  .img {
+    width: 150px;
+    margin-top: 120px;
+  }
 }

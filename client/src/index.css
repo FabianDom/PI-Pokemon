@@ -11,6 +11,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+@media (max-width: 767px) {
+  body {
+    background-size: cover; /* Ajusta el tamaño del fondo para dispositivos móviles */
+    background-attachment: fixed;
+    background-position: left;
+  }
+}
 @font-face {
   font-family: "myfont";
   src: url("../src/Components/fonts/JandaManateeBubble.ttf");

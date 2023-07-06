@@ -21,7 +21,7 @@ export default function Detail() {
     let barPower = "";
 
     if (property === "HP") {
-      barPower = `${(value / 150) * 100}%`;
+      barPower = `${(value / 200) * 100}%`;
     } else if (property === "Attack") {
       barPower = `${(value / 200) * 100}%`;
     } else if (property === "Defense") {
@@ -30,8 +30,6 @@ export default function Detail() {
       barPower = `${(value / 150) * 100}%`;
     } else if (property === "Height") {
       barPower = `${(value / 50) * 100}%`;
-    } else if (property === "Weight") {
-      barPower = `${(value / 2000) * 100}%`;
     } else {
       barPower = `${value}%`;
     }
@@ -58,7 +56,7 @@ export default function Detail() {
         </div>
       ) : (
         <div>
-          <Link to="/home">
+          <Link to={"/home"}>
             <button className={Styles.button}>Return to battle</button>
           </Link>
           <div className={Styles.divCard}>
@@ -81,7 +79,7 @@ export default function Detail() {
               {PowerBar("Defense", pokemonDetail.defense)}
               {PowerBar("Speed", pokemonDetail.speed)}
               {PowerBar("Height", pokemonDetail.height)}
-              {PowerBar("Weight", pokemonDetail.weight)}
+              <h3>Weigth: {pokemonDetail.weight} </h3>
             </div>
           </div>
         </div>

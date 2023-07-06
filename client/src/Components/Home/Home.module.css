@@ -131,3 +131,76 @@
   width: 50%;
   height: 26%;
 }
+/* Estilos para dispositivos móviles */
+@media only screen and (max-width: 768px) {
+  /* Estilos para la clase .buttonAll */
+  .h1 {
+    margin-top: 180px;
+    font-size: 50px;
+  }
+  .buttonAll {
+    position: relative;
+    left: 20px;
+    width: 70px;
+    height: 25px;
+    margin-left: 0;
+    margin-top: 10px;
+    font-size: 13px;
+  }
+
+  /* Estilos para la clase .buttonCreate */
+  .buttonCreate {
+    position: relative;
+    top: 118px;
+    right: 139px;
+    width: 120px;
+    height: 30px;
+    margin-top: 10px;
+  }
+
+  /* Estilos para la clase .buttonLogout */
+  .buttonLogout {
+    position: relative;
+    top: 7px;
+    right: 65px;
+    width: 40px;
+    height: 25px;
+    margin-right: 5px;
+    font-size: 12px;
+  }
+
+  /* Estilos para la clase .image */
+  .image {
+    margin-left: 50px;
+    align-items: center;
+    width: 150px;
+  }
+
+  /* Estilos para la clase .divSelect */
+  .divSelect {
+    flex-direction: row;
+    align-items: stretch;
+    margin-top: 10px;
+  }
+
+  /* Estilos para la clase .select */
+  .select {
+    margin-top: 40px;
+    margin-right: 0;
+    width: 100px;
+    font-size: 12px;
+  }
+
+  /* Estilos para la clase .divPokemon */
+  .divPokemon {
+    display: grid;
+    grid-template-columns: calc(55% - 50px) calc(55% - 10px);
+    justify-content: center;
+  }
+
+  /* Estilos para la clase .divPokemon img */
+  .divPokemon img {
+    width: 50%;
+    height: auto;
+  }
+}

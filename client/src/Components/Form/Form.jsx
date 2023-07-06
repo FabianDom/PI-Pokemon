@@ -1,24 +1,25 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getTypes, postPokemon } from "../../Redux/actions";
 import Validate from "./Validate";
+import Styles from "./Form.module.css";
 import swal from "sweetalert";
 import imgError from "../Images/error.png";
 import imgSucces from "../Images/succes.png";
-import Styles from "./Form.module.css";
 
 export default function Form() {
   const dispatch = useDispatch();
-  const history = useHistory();
   const types = useSelector((state) => state.types);
+  const pokemons = useSelector((state) => state.pokemons);
   const [errors, setErrors] = useState({}); // estado manejar errores de validacion.
   const [errorInput, setErrorInput] = useState(false); // estado para manejar el error de cada input
   const [form, setForm] = useState({
     // estado del formulario
     name: "",
-    image: "",
+    image:
+      "https://i.pinimg.com/originals/e2/7b/7d/e27b7d18b01ae4765133f4aec4aaf61d.png",
     hp: "",
     attack: "",
     defense: "",
@@ -32,6 +33,7 @@ export default function Form() {
   }, []);
 
   function handleChange(e) {
+    e.preventDefault();
     setForm({
       ...form,
       [e.target.name]: e.target.value,
@@ -49,6 +51,10 @@ export default function Form() {
   }
 
   function handleSelect(e) {
+    e.preventDefault();
+    if (e.target.value === "All") {
+      return; // No hacer nada
+    }
     setForm({
       ...form,
       types: [...form.types, e.target.value],
@@ -75,35 +81,75 @@ export default function Form() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (Object.keys(errors).length === 0 && form.name.length) {
-      dispatch(postPokemon(form));
-      swal({
-        title: "Pokemon Created",
-        icon: imgSucces,
-        button: "OK",
-        className: Styles["swal"],
-      });
-      setForm({
-        name: "",
-        image: "",
-        hp: "",
-        attack: "",
-        defense: "",
-        speed: "",
-        height: "",
-        weight: "",
-        types: [],
-      });
-      history.push("/home");
+    const existingName = pokemons.map((pokemon) => pokemon.name.toLowerCase());
+    const existingImage = pokemons.map((pokemon) => pokemon.image);
+    const errorsValue = Object.values(errors);
+    if (errorsValue.length === 0 && form.name.length) {
+      if (existingName.includes(form.name.toLowerCase())) {
+        swal({
+          title: "The pokemon name already exists",
+          icon: imgError,
+          button: "OK",
+          className: Styles["swal"],
+        });
+      } else {
+        dispatch(postPokemon(form));
+        swal({
+          title: "Pokemon Created",
+          icon: imgSucces,
+          button: "OK",
+          className: Styles["swal"],
+        });
+
+        setForm({
+          name: "",
+          image: "",
+          hp: "",
+          attack: "",
+          defense: "",
+          speed: "",
+          height: "",
+          weight: "",
+          types: [],
+        });
+      }
     } else {
-      let errorMessages = Object.values(errors).filter((error) => error !== "");
+      let errorMessages = errorsValue.filter((error) => error !== "");
       swal({
         title: "Please complete all fields",
-        text: errorMessages.join("\n"),
         icon: imgError,
         button: "OK",
         className: Styles["swal"],
       });
+    }
+  }
+
+  function handleImageClick() {
+    if (
+      form.image ===
+      "https://i.pinimg.com/originals/e2/7b/7d/e27b7d18b01ae4765133f4aec4aaf61d.png"
+    ) {
+      setForm({
+        ...form,
+        image: "",
+      });
+    }
+  }
+
+  function handleImageBlur() {
+    if (!form.image) {
+      setForm({
+        ...form,
+        image:
+          "https://i.pinimg.com/originals/e2/7b/7d/e27b7d18b01ae4765133f4aec4aaf61d.png",
+      });
+      setErrors(
+        Validate({
+          ...form,
+          image:
+            "https://i.pinimg.com/originals/e2/7b/7d/e27b7d18b01ae4765133f4aec4aaf61d.png",
+        })
+      );
     }
   }
 
@@ -130,12 +176,18 @@ export default function Form() {
         </div>
         <div>
           <label className={Styles.label}>Image:</label>
+          {form.image ===
+            "https://i.pinimg.com/originals/e2/7b/7d/e27b7d18b01ae4765133f4aec4aaf61d.png" && (
+            <p className={Styles.message}>Default Image</p>
+          )}
           <input
             className={Styles.input}
             type="url"
             value={form.image}
             name="image"
             placeholder="URL"
+            onClick={handleImageClick}
+            onBlur={handleImageBlur}
             onChange={(e) => handleChange(e)}
           />
           {errorInput.image && form.image && (
@@ -223,6 +275,7 @@ export default function Form() {
         <div>
           <label className={Styles.label}>Types:</label>
           <select className={Styles.select} onChange={handleSelect}>
+            <option>All</option>
             {types.map((ty) => (
               <option key={ty.name} value={ty.name}>
                 {ty.name.charAt(0).toUpperCase() +

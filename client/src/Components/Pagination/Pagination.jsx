@@ -10,10 +10,24 @@ export default function Pagination({
   // total de paginas
   const totalPages = Math.ceil(allPokemons / pokemonPage);
   const numberPage = [];
-  //  páginas necesarias en base a la cantidad total de pokemons
+  // páginas necesarias en base a la cantidad total de pokemons
   for (let i = 1; i <= Math.ceil(allPokemons / pokemonPage); i++) {
     numberPage.push(i);
   }
+
+  // Ajuste para mostrar los números de página de 5 en 5 en dispositivos móviles
+  const mobileNumberPage =
+    window.innerWidth <= 768
+      ? numberPage.filter(
+          (num) =>
+            num === currentPage ||
+            num === currentPage - 1 ||
+            num === currentPage + 1 ||
+            num === currentPage - 2 ||
+            num === currentPage + 2
+        )
+      : numberPage;
+
   return (
     <div className={Styles.container}>
       <button
@@ -23,8 +37,8 @@ export default function Pagination({
         Previous
       </button>
       <ul>
-        {numberPage &&
-          numberPage.map((num) => {
+        {mobileNumberPage &&
+          mobileNumberPage.map((num) => {
             return (
               <li key={num}>
                 <a
@@ -37,7 +51,6 @@ export default function Pagination({
             );
           })}
       </ul>
-
       <button
         onClick={() =>
           pagination(currentPage < totalPages ? currentPage + 1 : totalPages)
