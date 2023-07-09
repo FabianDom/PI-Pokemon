@@ -11,7 +11,7 @@ export default function Pokemon({ id, name, image, types, createdInDb }) {
   function handleDelete(id) {
     dispatch(deletePokemonDb(id));
     swal({
-      title: "Pokemon Created",
+      title: "Pokemon Deleted",
       icon: imgSucces,
       button: "OK",
       className: Styles["swal"],
