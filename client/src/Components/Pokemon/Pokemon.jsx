@@ -1,12 +1,40 @@
 import React from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { useDispatch } from "react-redux";
 import Styles from "./Pokemon.module.css";
-export default function Pokemon({ id, name, image, types }) {
+import { deletePokemonDb } from "../../Redux/actions";
+import imgSucces from "../Images/succes.png";
+import swal from "sweetalert";
+export default function Pokemon({ id, name, image, types, createdInDb }) {
+  const dispatch = useDispatch();
+
+  function handleDelete(id) {
+    dispatch(deletePokemonDb(id));
+    swal({
+      title: "Pokemon Created",
+      icon: imgSucces,
+      button: "OK",
+      className: Styles["swal"],
+    });
+  }
+  function deleteButton() {
+    if (createdInDb) {
+      return (
+        <button className={Styles.button} onClick={() => handleDelete(id)}>
+          X
+        </button>
+      );
+    }
+    return null;
+  }
   return (
     <div className={Styles.div}>
+      {deleteButton()}
+
       <Link to={`/pokemons/${id}`} key={id} style={{ textDecoration: "none" }}>
         <img src={image} alt="Pokemon" width="" height="" />
         <h3 className={Styles.h2}>{name.toUpperCase()}</h3>
+
         <h4 className={Styles.h4}>
           {types &&
             types.map((type, index) => {

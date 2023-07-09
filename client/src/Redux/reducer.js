@@ -22,6 +22,14 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
       };
+    case "DELETE_POKEMON":
+      const updatePokemons = state.pokemons.filter(
+        (pok) => pok.id !== action.payload
+      );
+      return {
+        ...state,
+        pokemons: updatePokemons,
+      };
     case "GET_NAME_POKEMONS":
       return {
         ...state,
@@ -57,31 +65,29 @@ export default function reducer(state = initialState, action) {
         ...state,
         pokemons: filterCreated,
       };
-    case "ORDER_NAME":
-      const sortName =
-        action.payload === "Ascendente"
-          ? state.pokemons.sort(function (a, b) {
-              if (a.name > b.name) {
-                return 1;
-              }
-              if (b.name > a.name) {
-                return -1;
-              }
-              return 0;
-            })
-          : state.pokemons.sort(function (a, b) {
-              if (a.name > b.name) {
-                return -1;
-              }
-              if (b.name > a.name) {
-                return 1;
-              }
-              return 0;
-            });
+    case "ORDER_NAME": {
+      const order = action.payload;
+      const allPokemons = state.pokemons.slice(); // Copia del array de pokemons
+
+      allPokemons.sort((a, b) => {
+        const nameA = a.name.toLowerCase();
+        const nameB = b.name.toLowerCase();
+        if (order === "Ascendente") {
+          if (nameA < nameB) return -1;
+          if (nameA > nameB) return 1;
+        } else if (order === "Descendente") {
+          if (nameA > nameB) return -1;
+          if (nameA < nameB) return 1;
+        }
+        return 0;
+      });
+
       return {
         ...state,
-        pokemons: sortName,
+        pokemons: allPokemons,
       };
+    }
+
     case "ORDER_ATTACK":
       const sortAttack =
         action.payload === "Max"

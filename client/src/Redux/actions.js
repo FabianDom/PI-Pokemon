@@ -60,7 +60,16 @@ export function getDetail(id) {
     });
   };
 }
-
+export function deletePokemonDb(id) {
+  const endpoint = "http://localhost:3001/pokemons/";
+  return async function (dispatch) {
+    await axios.delete(endpoint + id);
+    return dispatch({
+      type: "DELETE_POKEMON",
+      payload: id,
+    });
+  };
+}
 export function filterTypes(payload) {
   console.log(payload);
   return {

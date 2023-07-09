@@ -52,6 +52,49 @@
   font-size: 18;
   color: white;
 }
+.button {
+  position: absolute;
+  bottom: 250px;
+  left: 165px;
+  font-family: "myfont";
+  border: none;
+  border-radius: 4px;
+  background-color: #ffa300;
+  cursor: pointer;
+}
+.swal {
+  background-color: #f5f5f5;
+  width: 30%;
+  color: #333333;
+  border: 2px solid #cccccc;
+}
+
+.swal title {
+  font-family: "myfont";
+  font-size: 9px;
+  margin-bottom: 10px;
+}
+.swal text {
+  font-family: "myfont";
+  font-size: 9px;
+  margin-bottom: 10px;
+}
+
+.swal img {
+  width: 180px;
+  height: 150px;
+}
+
+.swal button {
+  background-color: #3462ad;
+  color: #ffffff;
+  border: none;
+  font-family: "myfont";
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
 /* Estilos para dispositivos móviles */
 @media only screen and (max-width: 768px) {
   .div {
@@ -79,5 +122,10 @@
   .span {
     font-size: 16px;
     color: white;
+  }
+  .button {
+    position: absolute;
+    bottom: 225px;
+    left: 120px;
   }
 }

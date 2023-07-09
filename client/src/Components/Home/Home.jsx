@@ -194,6 +194,7 @@ export default function Home() {
                   name={pk.name}
                   image={pk.image}
                   types={pk.types}
+                  createdInDb={pk.createdInDb}
                 />
               </div>
             ))}
