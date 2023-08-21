@@ -31,8 +31,8 @@
 
 ## Acceso a la Aplicación 🎉
 
-¡Explora la aplicación! Ver [aplicación](https://youtu.be/eHMMRxW_rI4).
+¡Explora la aplicación! Ver [aplicación](https://client-pokemon-wheat.vercel.app/).
 
 ## Reportar Problemas 🐞
 
-Si encuentras algún problema o tienes sugerencias, [aquí](https://github.com/FabianDom/Rick-And-Morty/issues) puedes crear un issue.
+Si encuentras algún problema o tienes sugerencias, [aquí](https://github.com/FabianDom/PI-Pokemon/issues) puedes crear un issue.
